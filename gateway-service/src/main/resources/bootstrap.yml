@@ -1,3 +1,28 @@
+server:
+  port: 8765
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+zuul:
+  prefix: /api
+  routes:
+    account:
+      path: /account/**
+      serviceId: account-service
+    customer:
+      path: /customer/**
+      serviceId: customer-service
+
 spring:
   application:
     name: gateway-server
+  cloud:
+    config:
+      name: gateway-service
+      uri: http://localhost:8081

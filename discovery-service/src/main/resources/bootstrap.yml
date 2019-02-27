@@ -1,0 +1,11 @@
+server:
+  port: ${PORT:8761}
+
+spring:
+  application:
+    name:
+      discovery-service
+  cloud:
+    config:
+      name: discovery-service
+      uri: http://localhost:8081
