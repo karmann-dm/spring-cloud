@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Account</title>
+</head>
+<body>
+<a href="/api/frontend/account/"><h3>Accounts list</h3></a>
+<a href="/api/frontend/customer/"><h3>Customers list</h3></a>
+<h2>Account</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Account id</th>
+        <th>Account number</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${account.getId()}"></td>
+        <td th:text="${account.getNumber()}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>

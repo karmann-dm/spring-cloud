@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: frontend-service
+  cloud:
+    config:
+      name: frontend-service
+      uri: http://localhost:8081

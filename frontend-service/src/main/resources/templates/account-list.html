@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Accounts list</title>
+</head>
+<body>
+<a href="/api/frontend/account/"><h3>Accounts list</h3></a>
+<a href="/api/frontend/customer/"><h3>Customers list</h3></a>
+<h2>Account list</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Account id</th>
+        <th>Account number</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account : ${accounts}">
+        <td th:text="${account.getId()}"></td>
+        <td>
+            <a th:href="${'/api/frontend/account/' + account.getId()}" th:text="${account.getNumber()}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
