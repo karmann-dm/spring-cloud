@@ -1,0 +1,30 @@
+version: '2'
+services:
+  account:
+    build: account-service
+    ports:
+    - 2222:2222
+  config:
+    build: config-service
+    ports:
+    - 8081:8081
+  customer:
+    build: customer-service
+    ports:
+    - 3333:3333
+  discovery:
+    build: discovery-service
+    ports:
+    - 8761:8761
+  frontend:
+    build: frontend-service
+    ports:
+    - 8080:8080
+  gateway:
+    build: gateway-service
+    ports:
+    - 8765:8765
+  zipkin:
+    build: zipkin-service
+    ports:
+    - 9411:9411

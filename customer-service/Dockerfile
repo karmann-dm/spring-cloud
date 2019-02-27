@@ -1,5 +1,7 @@
-FROM openjdk
-MAINTAINER Piotr Minkowski <piotr.minkowski@gmail.com>
-ADD target/customer-service.jar customer-service.jar
-ENTRYPOINT ["java", "-jar", "/customer-service.jar"]
+FROM java:8-jre
+MAINTAINER Karmanov Dmitry <karmanno@gmail.com>
+
+ADD ./target/customer-service.jar /app/
+CMD ["java", "-jar", "/app/customer-service.jar"]
+
 EXPOSE 3333

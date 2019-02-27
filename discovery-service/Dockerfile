@@ -1,5 +1,7 @@
-FROM openjdk
-MAINTAINER Piotr Minkowski <piotr.minkowski@gmail.com>
-ADD target/discovery-service.jar discovery-service.jar
-ENTRYPOINT ["java", "-jar", "/discovery-service.jar"]
+FROM java:8-jre
+MAINTAINER Karmanov Dmitry <karmanno@gmail.com>
+
+ADD ./target/discovery-service.jar /app/
+CMD ["java", "-jar", "/app/discovery-service.jar"]
+
 EXPOSE 8761

@@ -60,6 +60,9 @@
     <build>
         <plugins>
             <plugin>
+                <configuration>
+                    <finalName>config-service</finalName>
+                </configuration>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
