@@ -63,3 +63,8 @@ services:
       options:
         max-size: "10m"
         max-file: "10"
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+    - "5672:5672"
+    - "15672:15672"

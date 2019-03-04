@@ -5,20 +5,25 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pl.piomin.microservices.account.model.Account;
 
+import javax.sound.midi.Receiver;
+
 @RestController
 public class Api {
 
 	private List<Account> accounts;
+	private RabbitTemplate rabbitTemplate;
+	private Receiver receiver;
 	
 	protected Logger logger = Logger.getLogger(Api.class.getName());
 	
-	public Api() {
+	public Api(Receiver receiver, RabbitTemplate rabbitTemplate) {
 		accounts = new ArrayList<>();
 		accounts.add(new Account(1, 1, "111111"));
 		accounts.add(new Account(2, 2, "222222"));
@@ -27,23 +32,26 @@ public class Api {
 		accounts.add(new Account(5, 1, "555555"));
 		accounts.add(new Account(6, 2, "666666"));
 		accounts.add(new Account(7, 2, "777777"));
+
+		this.receiver = receiver;
+		this.rabbitTemplate = rabbitTemplate;
 	}
 	
 	@RequestMapping("/accounts/{number}")
 	public Account findByNumber(@PathVariable("number") String number) {
-		logger.info(String.format("Account.findByNumber(%s)", number));
+		rabbitTemplate.convertAndSend("Access to accounts by number");
 		return accounts.stream().filter(it -> it.getNumber().equals(number)).findFirst().get();
 	}
 	
 	@RequestMapping("/accounts/customer/{customer}")
 	public List<Account> findByCustomer(@PathVariable("customer") Integer customerId) {
-		logger.info(String.format("Account.findByCustomer(%s)", customerId));
+		rabbitTemplate.convertAndSend("Access to accounts by customer");
 		return accounts.stream().filter(it -> it.getCustomerId().intValue()==customerId.intValue()).collect(Collectors.toList());
 	}
 	
 	@RequestMapping("/accounts")
 	public List<Account> findAll() {
-		logger.info("Account.findAll()");
+		rabbitTemplate.convertAndSend("Access to accounts list");
 		return accounts;
 	}
 	
